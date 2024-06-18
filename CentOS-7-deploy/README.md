@@ -178,7 +178,7 @@ template1=# \q
 Restart Postgresql so the change takes effect
 
 ```
-# systemctl restart postgresql-11
+# systemctl restart postgresql-16
 ```
 
 Switch to the postgres user and setup the database for DefectDojo. Change [DefectDojo DB password] to an appropriate long, random password.
