@@ -91,7 +91,17 @@ To check that the exclusion of Postgresql worked, you can run the following:
 
 If the edits above worked, you'll get a message that postgresql is not available.
 
-**Install Postgresql 11**
+**Install Postgresql 11** (Skipped these instructions - Followed the install steps from here https://www.postgresql.org/download/linux/redhat/)
+
+Start - RJ
+Followed the install steps from here https://www.postgresql.org/download/linux/redhat/ and not the**Install Postgresql 11**
+sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+sudo dnf -qy module disable postgresql
+sudo dnf install -y postgresql16-server
+sudo /usr/pgsql-16/bin/postgresql-16-setup initdb
+sudo systemctl enable postgresql-16
+sudo systemctl start postgresql-16
+End - RJ
 
 ```
 # yum install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
