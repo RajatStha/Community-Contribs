@@ -35,7 +35,7 @@ Installation conventions
 # yum update -y
 ```
 
-**Setup local firewall** (Skipped this step)
+**Setup local firewall**
 
 The following setup assumes you are going to run Postgresql on the defaul port (5432) and have port 22 for remote administration. Firewall will allow inbound connections to 22 (SSH) and allow the DefectDojo VM only to connect to Postgresql. Feel free to add other inbound traffic as your deployment requires.  And, yes, I'm lazy and use ufw to setup the firewall rules because it makes it super easy.  If you're l33t, feel free to use your preferred tool.
 
@@ -91,7 +91,7 @@ To check that the exclusion of Postgresql worked, you can run the following:
 
 If the edits above worked, you'll get a message that postgresql is not available.
 
-**Install Postgresql 11** (Skipped these instructions - Followed the install steps from here https://www.postgresql.org/download/linux/redhat/)
+**Install Postgresql 11** (Skipped some of these instructions - Followed the install steps from here https://www.postgresql.org/download/linux/redhat/)
 
 START - RJ
 Followed the install steps from here https://www.postgresql.org/download/linux/redhat/
@@ -101,16 +101,19 @@ sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-
 sudo dnf -qy module disable postgresql
 sudo dnf install -y postgresql16-server
 sudo /usr/pgsql-16/bin/postgresql-16-setup initdb
-sudo systemctl enable postgresql-16
-sudo systemctl start postgresql-16
+sudo systemctl enable postgresql-16 (Do this later after couple steps below, you will see this executed below)
+sudo systemctl start postgresql-16 (Same as above do this later after couple steps below, you will see this executed below)
 ```
 END - RJ
 
 
+Start - SKIPPED
 ```
 # yum install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 # /usr/pgsql-11/bin/postgresql-11-setup initdb
 ```
+END - SKIPPED
+
 Add the database server's IP address to postgresql.conf so remote hosts can connect.
 
 ```
@@ -150,14 +153,14 @@ host    all             all             8.8.8.8/32              md5
 Enable and startup Postgresql
 
 ```
-# systemctl enable postgresql-11
-# systemctl start postgresql-11
+# systemctl enable postgresql-16
+# systemctl start postgresql-16
 ```
 
 Check Postgresql's status
 
 ```
-# systemctl status postgresql-11
+# systemctl status postgresql-16
 ```
 
 **Setup Postgresql for DefectDojo**
