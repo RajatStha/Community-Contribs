@@ -35,7 +35,7 @@ Installation conventions
 # yum update -y
 ```
 
-**Setup local firewall**
+**Setup local firewall** (Skipped this step)
 
 The following setup assumes you are going to run Postgresql on the defaul port (5432) and have port 22 for remote administration. Firewall will allow inbound connections to 22 (SSH) and allow the DefectDojo VM only to connect to Postgresql. Feel free to add other inbound traffic as your deployment requires.  And, yes, I'm lazy and use ufw to setup the firewall rules because it makes it super easy.  If you're l33t, feel free to use your preferred tool.
 
