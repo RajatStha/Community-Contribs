@@ -95,6 +95,7 @@ If the edits above worked, you'll get a message that postgresql is not available
 
 START - RJ
 Followed the install steps from here https://www.postgresql.org/download/linux/redhat/
+VERSION: psql (PostgreSQL) 16.3
 ```
 sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 sudo dnf -qy module disable postgresql
