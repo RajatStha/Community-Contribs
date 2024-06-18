@@ -52,7 +52,7 @@ Replace the IP 8.8.8.8 with the IP address of the VM/server for the DefectDojo a
 
 The "ufw status" command should show port 22 open for any IP inbound and 5432 (Postgresql) only for the DefectDojo VM/server's IP. If you're new to ufw, Google is your friend.
 
-**Setup Postgresql**
+**Setup Postgresql** (Skipped this step)
 
 You will need to edit /etc/yum.repos.d/CentOS-Base.repo using the $EDITOR of your choice (vi, nano, ...) and add the following line to the [base] and [update] stanzas:
 
@@ -91,7 +91,7 @@ To check that the exclusion of Postgresql worked, you can run the following:
 
 If the edits above worked, you'll get a message that postgresql is not available.
 
-**Install Postgresql 11**
+**Install Postgresql 11** (Skipped these instructions - Followed the install steps from here https://www.postgresql.org/download/linux/redhat/)
 
 ```
 # yum install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
