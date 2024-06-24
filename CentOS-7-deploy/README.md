@@ -192,6 +192,13 @@ $ createdb dojodb
 $ createuser dojodbusr
 $ psql -c "alter user dojodbusr with encrypted password '[DefectDojo DB password]';"
 $ psql -c "grant all privileges on database dojodb to dojodbusr;"
+
+# Connect to database "dojodb" as user "postgres".
+# With PostgreSQL 15, this has changed ([source](https://www.postgresql.org/about/news/postgresql-15-released-2526/)):
+#      PostgreSQL 15 also revokes the CREATE permission from all users except a database owner from the public (or default) schema.
+$ psql
+postgres=# \c dojodb postgres
+$ GRANT ALL ON SCHEMA public TO dojodbusr;
 ```
 
 The above:
