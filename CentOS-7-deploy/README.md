@@ -117,7 +117,7 @@ END - SKIPPED
 Add the database server's IP address to postgresql.conf so remote hosts can connect.
 
 ```
-# vi /var/lib/pgsql/11/data/postgresql.conf
+# vi /var/lib/pgsql/16/data/postgresql.conf
 ```
 
 Search for and find the line which reads:
@@ -135,7 +135,7 @@ listen_addresses = 'localhost,8.8.8.9'
 We also need to edit pg_hba.conf to allow the DefectDojo application to connect to Postgresql. Open that file in an editor:
 
 ```
-# vi /var/lib/pgsql/data/pg_hba.conf
+# vi /var/lib/pgsql/16/data/pg_hba.conf
 ```
 
 And find the line that matches the line below:
@@ -206,6 +206,7 @@ The above:
 * Creates a database called "dojodb" for DefectDojo to use
 * Creates a DB user named "dojodbusr" for DefectDojo to log in with using the value you supplied for [DefectDojo DB password]
 * Grants all privileges to the "dojodb" database to the "dojodbusr" DB user
+* Grants all schema public permission to "dojodbusr" DB user 
 
 Postgresql is now ready for DefectDojo.  Make sure and note down the hostname, port, database name, db username and password to use while setting up DefectDojo.
 
@@ -216,8 +217,8 @@ Postgresql is now ready for DefectDojo.  Make sure and note down the hostname, p
 ```
 # yum update -y
 ```
-
-**Setup local firewall**
+ 
+**Setup local firewall** (SKIPPED this)
 
 The following setup assumes you are going to run DefectDojo on port 443 and have port 80 redirect to 443 (TLS).  Firewall will allow inbound connections to 22 (SSH), 80 (HTTP) and 443 (HTTPS). Feel free to add other inbound traffic as your deployment requires.  And, yes, I'm lazy and use ufw to setup the firewall rules because it makes it super easy.  If you're l33t, feel free to use your preferred tool.
 
@@ -233,7 +234,7 @@ The following setup assumes you are going to run DefectDojo on port 443 and have
 
 The "ufw status" command should show ports 22, 80 and 443 open for inbound connections from any IP. Adjust the rules as needed. If you're new to ufw, Google is your friend.
 
-**Install Docker and Docker Compose**
+**Install Docker and Docker Compose** (SKIPPED this on Test Server - might want to install docker and all required docker packages for PRD - use the install steps from confluence) 
 
 ```
 # yum remove docker docker-client docker-client-latest docker-common  docker-latest docker-latest-logrotate docker-logrotate docker-engine
@@ -244,7 +245,23 @@ The "ufw status" command should show ports 22, 80 and 443 open for inbound conne
 # chmod +x /usr/local/bin/docker-compose
 ```
 
-**Setup DefectDojo installation directory**
+**Setup DefectDojo installation directory** (Skipped the steps here and followed the steps from release/2.35.3 branch)
+
+RJ - START HERE (This step was sufficient for Dojo using the release 2.35.3 branch)
+```
+# mkdir -p /opt/dojo
+git clone https://github.com/DefectDojo/django-DefectDojo
+# copy the local_settings.py file to django-DefectDojo/dojo/settings
+# Replace the original the Jira template with custom ones
+# Update the docker-compose.yml file
+# Update the docker/environments/postgres-redis.env file
+./dc-build.sh
+./dc-up-d.sh postgres-redis
+check the initializer container logs and validate
+```
+RJ - END HERE
+
+
 
 ```
 # mkdir -p /opt/dojo
